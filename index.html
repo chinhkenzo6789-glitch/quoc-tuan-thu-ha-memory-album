@@ -1,1 +1,163 @@
-<!doctype html><title>Memory Album</title>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#08090d">
+    <title>Quốc Tuấn &amp; Thu Hà - Memory Album</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="petal-layer" id="petalLayer" aria-hidden="true"></div>
+
+    <header class="site-header glass">
+        <a class="brand" href="#top" aria-label="Về đầu trang">
+            <img src="assets/logo.png" alt="CINO">
+            <span>Memory Album</span>
+        </a>
+        <div class="header-marquee" aria-label="Quốc Tuấn và Thu Hà">
+            <div class="marquee-track">
+                <span>Quốc Tuấn ♥ Thu Hà</span>
+                <span>Quốc Tuấn ♥ Thu Hà</span>
+                <span>Quốc Tuấn ♥ Thu Hà</span>
+                <span>Quốc Tuấn ♥ Thu Hà</span>
+            </div>
+        </div>
+        <button class="icon-button" id="musicToggle" type="button" aria-label="Bật hoặc tắt nhạc">
+            <span id="musicIcon">♪</span>
+        </button>
+    </header>
+
+    <main id="top">
+        <section class="hero">
+            <div class="hero-media" aria-hidden="true"></div>
+            <div class="hero-copy">
+                <p class="save">Save the date</p>
+                <h1>Quốc Tuấn &amp; Thu Hà</h1>
+                <p class="hero-text">Một nơi nhỏ để lưu lại những khoảnh khắc đẹp, lời chúc và những điều bình dị nhất của ngày đặc biệt.</p>
+                <div class="hero-actions">
+                    <a class="glass-button primary" href="#gallery">Xem kỷ niệm</a>
+                    <button class="glass-button" id="heroPlay" type="button">Phát nhạc</button>
+                </div>
+            </div>
+            <div class="date-card glass" aria-label="Ngày kỷ niệm">
+                <span>06</span>
+                <small>06.2026</small>
+            </div>
+        </section>
+
+        <section class="intro-band">
+            <p>Ảnh và video được gom lại như một cuốn album sống, mở ra nhẹ nhàng trên điện thoại.</p>
+        </section>
+
+        <section class="gallery-section" id="gallery">
+            <div class="section-heading">
+                <p>Khoảnh khắc</p>
+            </div>
+            <div class="gallery-grid" id="galleryGrid" aria-live="polite"></div>
+        </section>
+
+        <section class="book-section" id="book">
+            <div class="section-heading">
+                <p>Cuốn album</p>
+            </div>
+            <div class="album-cover-wrap">
+                <button class="album-cover glass" id="albumCover" type="button" aria-label="Mở cuốn album">
+                    <img src="assets/images/optimized/hero.webp" alt="">
+                    <span class="album-cover-kicker">Quốc Tuấn &amp; Thu Hà</span>
+                    <strong>Memory Album</strong>
+                    <em>Open the story</em>
+                </button>
+            </div>
+            <p class="album-cover-note">Chạm vào để mở album</p>
+        </section>
+
+        <section class="video-section" id="film">
+            <div class="section-heading">
+                <p>Video</p>
+            </div>
+            <div class="video-frame glass" id="videoFrame">
+                <div class="video-placeholder" id="videoPlaceholder">
+                    <span>▶</span>
+                    <p>Video sẽ tự phát khi bạn kéo tới phần này.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="share-section" id="share">
+            <div class="share-card glass">
+                <h2>Gửi album tới bạn bè</h2>
+                <p>Chia sẻ link kỷ niệm qua các ứng dụng xã hội hoặc sao chép để gửi riêng.</p>
+                <div class="share-actions">
+                    <button class="glass-button primary" id="nativeShare" type="button">Chia sẻ nhanh</button>
+                    <a class="glass-button" id="zaloShare" target="_blank" rel="noopener">Zalo</a>
+                    <a class="glass-button" id="facebookShare" target="_blank" rel="noopener">Facebook</a>
+                    <a class="glass-button" id="telegramShare" target="_blank" rel="noopener">Telegram</a>
+                    <button class="glass-button" id="copyLink" type="button">Sao chép link</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <img src="assets/logo.png" alt="CINO">
+        <p>Designed by CINO</p>
+        <p>Liên hệ zalo: 0969.456.914</p>
+    </footer>
+
+    <dialog class="lightbox" id="lightbox">
+        <div class="lightbox-panel">
+            <button class="lightbox-close" id="closeLightbox" type="button" aria-label="Đóng">×</button>
+            <button class="lightbox-nav prev" id="prevImage" type="button" aria-label="Ảnh trước">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5 8 12l7 7"/></svg>
+            </button>
+            <figure>
+                <img id="lightboxImage" alt="">
+                <figcaption id="imageCaption"></figcaption>
+            </figure>
+            <button class="lightbox-nav next" id="nextImage" type="button" aria-label="Ảnh sau">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>
+            </button>
+            <div class="lightbox-tools glass">
+                <button id="downloadCurrent" type="button" aria-label="Tai anh goc">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 5-5m-5 5-5-5M5 21h14"/></svg>
+                    <span>T&#7843;i &#7843;nh g&#7889;c</span>
+                </button>
+            </div>
+        </div>
+    </dialog>
+
+    <dialog class="album-viewer" id="albumViewer" aria-label="Cuốn album kỷ niệm">
+        <div class="album-viewer-shell">
+            <button class="album-close" id="closeAlbum" type="button" aria-label="Đóng album">×</button>
+            <button class="album-nav prev" id="albumPrev" type="button" aria-label="Trang trước">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5 8 12l7 7"/></svg>
+            </button>
+            <div class="album-stage" id="albumStage">
+                <div class="album-spread" id="albumSpread" aria-live="polite"></div>
+            </div>
+            <button class="album-nav next" id="albumNext" type="button" aria-label="Trang sau">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>
+            </button>
+            <p class="album-counter" id="albumCounter"></p>
+        </div>
+    </dialog>
+
+    <audio id="bgMusic" loop preload="auto" autoplay playsinline>
+        <source src="assets/music/music.mp3" type="audio/mpeg">
+    </audio>
+
+    <template id="photoCardTemplate">
+        <article class="photo-card glass">
+            <button class="photo-open" type="button">
+                <img alt="" loading="lazy">
+            </button>
+            <div class="photo-meta">
+                <span class="photo-index"></span>
+            </div>
+        </article>
+    </template>
+
+    <script src="main.js"></script>
+</body>
+</html>
